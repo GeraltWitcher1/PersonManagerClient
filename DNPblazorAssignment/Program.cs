@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DNPblazorAssignment.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,10 @@ namespace DNPblazorAssignment
     {
         public static void Main(string[] args)
         {
+
+            // IAdultManager adultManager = new AdultManager();
+            // Console.WriteLine(adultManager.GetAdult(0).JobTitle.JobTitle);
+            // adultManager.RemoveAdult(14);
             CreateHostBuilder(args).Build().Run();
         }
 
