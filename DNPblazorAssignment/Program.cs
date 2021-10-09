@@ -15,9 +15,6 @@ namespace DNPblazorAssignment
         public static void Main(string[] args)
         {
 
-            // IAdultManager adultManager = new AdultManager();
-            // Console.WriteLine(adultManager.GetAdult(0).JobTitle.JobTitle);
-            // adultManager.RemoveAdult(14);
             CreateHostBuilder(args).Build().Run();
         }
 

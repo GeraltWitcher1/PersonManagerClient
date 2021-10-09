@@ -1,0 +1,136 @@
+﻿@page "/adults"
+@using Models
+@using DNPblazorAssignment.Data
+@inject IAdultManager AdultService
+<h3>AdultsList</h3>
+
+
+<h3>The adults</h3>
+<hr/>
+
+<div class="row p-3">
+    <div class="col-4">
+        Filter by UserId :
+        <input class="form-control form-control-md" type="number" @oninput="@(FilterById)"/>
+    </div>
+    <div class="col-4">
+        Filter by Name :
+        <input class="form-control form-control-md" type="text" @oninput="@(FilterByName)"/>
+    </div>
+    <div class="col-4">
+        Filter by Job Title :
+        <input class="form-control form-control-md" type="text" @oninput="@(FilterByJobTitle)"/>
+    </div>
+</div>
+
+@if (adultsToShow == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else if (!adultsToShow.Any())
+{
+    <p>
+        <em>List is empty. Please add some data.</em>
+    </p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Hair Color</th>
+            <th>Eye Color</th>
+            <th>Job Title</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var adult in adultsToShow)
+        {
+            <tr>
+                <td>@adult.Id</td>
+                <td>@adult.FirstName</td>
+                <td>@adult.LastName</td>
+                <td>@adult.Age</td>
+                <td>@adult.Sex</td>
+                <td>@adult.Weight</td>
+                <td>@adult.Height</td>
+                <td>@adult.HairColor</td>
+                <td>@adult.EyeColor</td>
+                <td>@adult.JobTitle.JobTitle</td>
+                <td>@adult.JobTitle.Salary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private IList<Adult> allAdults;
+    private IList<Adult> adultsToShow;
+
+    private int? filterById;
+    private string filterByName, filterByJobTitle;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allAdults = AdultService.GetAll();
+        adultsToShow = allAdults;
+    }
+    
+    private void FilterById(ChangeEventArgs evt)
+    {
+        filterById = null;
+        try
+        {
+            if (evt.Value != null)
+                filterById = int.Parse(evt.Value.ToString() ?? string.Empty);
+        }
+        catch (Exception)
+        {
+        }
+
+        ExecuteFilter();
+    }
+
+
+    private void FilterByName(ChangeEventArgs evt)
+    {
+        filterByName = null;
+        if (evt.Value != null && evt.Value?.ToString() != "")
+        {
+            filterByName = evt.Value?.ToString();
+        }
+
+        ExecuteFilter();
+    }
+
+    private void FilterByJobTitle(ChangeEventArgs evt)
+    {
+        filterByJobTitle = null;
+        if (evt.Value != null && evt.Value?.ToString() != "")
+        {
+            filterByJobTitle = evt.Value?.ToString();
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        adultsToShow = allAdults.Where(adult =>
+            (filterById != null && adult.Id == filterById || filterById == null) &&
+            (filterByName != null && (adult.LastName.StartsWith(filterByName) || adult.FirstName.StartsWith(filterByName)) || filterByName == null) &&
+            (filterByJobTitle != null && adult.JobTitle.JobTitle.StartsWith(filterByJobTitle) || filterByJobTitle == null)
+            ).ToList();
+    }
+}

@@ -12,9 +12,9 @@ namespace DNPblazorAssignment.Data
         private FileContext fileContext;
         private IList<Adult> adults;
         
-        public AdultManager()
+        public AdultManager(FileContext fileContext)
         {
-            fileContext = new FileContext();
+            this.fileContext = fileContext;
             adults = fileContext.Adults;
         }
         

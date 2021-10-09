@@ -90,7 +90,7 @@ using DNPblazorAssignment.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\NavMenu.razor"
+#line 29 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

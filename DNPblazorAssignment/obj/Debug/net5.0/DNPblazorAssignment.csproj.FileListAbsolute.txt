@@ -52,3 +52,7 @@ C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAss
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\DNPblazorAssignment.csproj.CopyComplete
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\bin\Debug\net5.0\adults.json
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\bin\Debug\net5.0\families.json
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\RazorDeclaration\Pages\AdultsList.razor.g.cs
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\Razor\Pages\AdultsList.razor.g.cs
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\RazorDeclaration\Pages\AddAdult.razor.g.cs
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\Razor\Pages\AddAdult.razor.g.cs

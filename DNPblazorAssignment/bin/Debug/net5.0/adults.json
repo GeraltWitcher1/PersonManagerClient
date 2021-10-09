@@ -223,5 +223,20 @@
     "Weight": 81.8,
     "Height": 172,
     "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Software engineering student",
+      "Salary": 5000
+    },
+    "Id": 15,
+    "FirstName": "Deniss",
+    "LastName": "Puzirevs",
+    "HairColor": "Brown",
+    "EyeColor": "Brown",
+    "Age": 21,
+    "Weight": 80,
+    "Height": 189,
+    "Sex": "M"
   }
 ]

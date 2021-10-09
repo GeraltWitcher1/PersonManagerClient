@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DNPblazorAssignment.Data;
+using FileData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,8 @@ namespace DNPblazorAssignment
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSingleton<FileContext>();
+            services.AddSingleton<IAdultManager, AdultManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
