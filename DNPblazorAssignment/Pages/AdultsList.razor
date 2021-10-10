@@ -2,6 +2,8 @@
 @using Models
 @using DNPblazorAssignment.Data
 @inject IAdultManager AdultService
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavMgr
 <h3>AdultsList</h3>
 
 
@@ -68,6 +70,16 @@ else
                 <td>@adult.EyeColor</td>
                 <td>@adult.JobTitle.JobTitle</td>
                 <td>@adult.JobTitle.Salary</td>
+                <td>
+                    <button @onclick="@(() => RemoveAdult(adult.Id))">
+                        <i class="oi oi-trash" style="color:gray"></i>
+                    </button>
+                </td>
+                <td>
+                    <button @onclick="@(() => Edit(adult.Id))">
+                        <i class="oi oi-pencil" style="color: #1b6ec2"></i>
+                    </button>
+                </td>
             </tr>
         }
         </tbody>
@@ -133,4 +145,22 @@ else
             (filterByJobTitle != null && adult.JobTitle.JobTitle.StartsWith(filterByJobTitle) || filterByJobTitle == null)
             ).ToList();
     }
+
+    private async Task RemoveAdult(int adultId)
+    {
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Delete this adult?");
+        if (confirmed)
+        {
+            AdultService.RemoveAdult(adultId);
+            var adultToRemove = allAdults.First(a => a.Id == adultId);
+            allAdults.Remove(adultToRemove);
+            adultsToShow.Remove(adultToRemove);
+        }
+    }
+
+    private void Edit(int id)
+    {
+        NavMgr.NavigateTo($"Edit/{id}");
+    }
+
 }

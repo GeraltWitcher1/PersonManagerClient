@@ -56,3 +56,5 @@ C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAss
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\Razor\Pages\AdultsList.razor.g.cs
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\RazorDeclaration\Pages\AddAdult.razor.g.cs
 C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\Razor\Pages\AddAdult.razor.g.cs
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\RazorDeclaration\Pages\EditAdult.razor.g.cs
+C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\obj\Debug\net5.0\Razor\Pages\EditAdult.razor.g.cs

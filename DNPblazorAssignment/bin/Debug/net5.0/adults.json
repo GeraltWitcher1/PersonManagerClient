@@ -136,21 +136,6 @@
   },
   {
     "JobTitle": {
-      "JobTitle": "Writer",
-      "Salary": 63392
-    },
-    "Id": 9,
-    "FirstName": "Genevieve",
-    "LastName": "Cruz",
-    "HairColor": "Leverpostej",
-    "EyeColor": "Brown",
-    "Age": 46,
-    "Weight": 102.5,
-    "Height": 164,
-    "Sex": "F"
-  },
-  {
-    "JobTitle": {
       "JobTitle": "Casino Host",
       "Salary": 35445
     },
