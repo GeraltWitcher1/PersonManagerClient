@@ -40,7 +40,7 @@ namespace DNPblazorAssignment
             {
                 option.AddPolicy("MustBeAdmin", builder =>
                 {
-                    builder.RequireAuthenticatedUser().RequireClaim("Role", "Administrator");
+                    builder.RequireAuthenticatedUser().RequireClaim("Role", "Admin");
                 });
                 
                 option.AddPolicy("MustBeLoggedIn", builder =>

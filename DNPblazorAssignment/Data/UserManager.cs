@@ -34,7 +34,7 @@ namespace DNPblazorAssignment.Data
                 {
                     Username = "admin",
                     Password = "admin",
-                    Role = "Administrator"
+                    Role = "Admin"
                 },
                 new User
                 {
