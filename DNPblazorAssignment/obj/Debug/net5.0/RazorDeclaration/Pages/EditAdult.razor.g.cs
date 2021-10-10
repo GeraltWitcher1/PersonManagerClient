@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace DNPblazorAssignment.Shared
+namespace DNPblazorAssignment.Pages
 {
     #line hidden
     using System;
@@ -83,13 +83,21 @@ using DNPblazorAssignment.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\MainLayout.razor"
-using DNPblazorAssignment.Authentication;
+#line 2 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Pages\EditAdult.razor"
+using Models;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+#nullable restore
+#line 3 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Pages\EditAdult.razor"
+using DNPblazorAssignment.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Edit/{Id:int}")]
+    public partial class EditAdult : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -97,43 +105,30 @@ using DNPblazorAssignment.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\MainLayout.razor"
- 
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthStat { get; set; }
+#line 83 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Pages\EditAdult.razor"
+       
+    [Parameter]
+    public int Id { get; set; }
 
-    protected async override Task OnInitializedAsync()
+    private Adult adultToEdit;
+
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
-        if (!user.Identity.IsAuthenticated)
-        {
-            NavigationManager.NavigateTo($"/Login");
-        }
+        adultToEdit = AdultService.GetAdult(Id);
     }
 
-    private void Login()
+    private void Save()
     {
-        NavigationManager.NavigateTo("/Login");
+        AdultService.UpdateAdult(adultToEdit);
+        NavMgr.NavigateTo("/adults");
     }
-
-    private async Task PerformLogout()
-    {
-        try
-        {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/Login");
-        }
-        catch (Exception)
-        {
-        }
-    }
+    
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavMgr { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultManager AdultService { get; set; }
     }
 }
 #pragma warning restore 1591

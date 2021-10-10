@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace DNPblazorAssignment.Shared
+namespace DNPblazorAssignment.Pages
 {
     #line hidden
     using System;
@@ -83,13 +83,14 @@ using DNPblazorAssignment.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\MainLayout.razor"
+#line 2 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Pages\Login.razor"
 using DNPblazorAssignment.Authentication;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class MainLayout : LayoutComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -97,37 +98,43 @@ using DNPblazorAssignment.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Shared\MainLayout.razor"
- 
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthStat { get; set; }
+#line 25 "C:\Users\Dennis\Documents\GitHub\DNP Assignment\DNPblazorAssignment\DNPblazorAssignment\Pages\Login.razor"
+       
+    private string username;
+    private string password;
+    private string errorMessage;
 
-    protected async override Task OnInitializedAsync()
+    private async Task PerformLogin()
     {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
-        if (!user.Identity.IsAuthenticated)
+        errorMessage = "";
+        try
         {
-            NavigationManager.NavigateTo($"/Login");
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            username = "";
+            password = "";
+            NavigationManager.NavigateTo("/");
         }
-    }
-
-    private void Login()
-    {
-        NavigationManager.NavigateTo("/Login");
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
     }
 
     private async Task PerformLogout()
     {
+        errorMessage = "";
+        username = "";
+        password = "";
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/Login");
+            NavigationManager.NavigateTo("/");
         }
         catch (Exception)
         {
         }
     }
+
 
 #line default
 #line hidden

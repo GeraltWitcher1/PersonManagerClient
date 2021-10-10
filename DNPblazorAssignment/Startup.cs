@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DNPblazorAssignment.Authentication;
 using DNPblazorAssignment.Data;
 using FileData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,22 @@ namespace DNPblazorAssignment
             services.AddServerSideBlazor();
             services.AddSingleton<FileContext>();
             services.AddSingleton<IAdultManager, AdultManager>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("MustBeAdmin", builder =>
+                {
+                    builder.RequireAuthenticatedUser().RequireClaim("Role", "Admin");
+                });
+                
+                option.AddPolicy("MustBeLoggedIn", builder =>
+                {
+                    builder.RequireAuthenticatedUser();
+                });
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

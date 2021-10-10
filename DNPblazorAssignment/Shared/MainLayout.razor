@@ -1,5 +1,9 @@
 @inherits LayoutComponentBase
 
+@using DNPblazorAssignment.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
 <div class="page">
     <div class="sidebar">
         <NavMenu/>
@@ -7,6 +11,14 @@
 
     <div class="main">
         <div class="top-row px-4">
+            <AuthorizeView>
+                <NotAuthorized>
+                    <button class="btn btn-success" @onclick="Login">Log in</button>
+                </NotAuthorized>
+                <Authorized>
+                    <button class="btn btn-danger" @onclick="PerformLogout">Log out</button>
+                </Authorized>
+            </AuthorizeView>
         </div>
 
         <div class="content px-4">
@@ -14,3 +26,36 @@
         </div>
     </div>
 </div>
+
+@code
+{
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/Login");
+        }
+    }
+
+    private void Login()
+    {
+        NavigationManager.NavigateTo("/Login");
+    }
+
+    private async Task PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/Login");
+        }
+        catch (Exception)
+        {
+        }
+    }
+}

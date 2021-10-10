@@ -70,16 +70,20 @@ else
                 <td>@adult.EyeColor</td>
                 <td>@adult.JobTitle.JobTitle</td>
                 <td>@adult.JobTitle.Salary</td>
-                <td>
-                    <button @onclick="@(() => RemoveAdult(adult.Id))">
-                        <i class="oi oi-trash" style="color:gray"></i>
-                    </button>
-                </td>
-                <td>
-                    <button @onclick="@(() => Edit(adult.Id))">
-                        <i class="oi oi-pencil" style="color: #1b6ec2"></i>
-                    </button>
-                </td>
+                <AuthorizeView Policy="MustBeAdmin">
+                    <td>
+                        <button @onclick="@(() => RemoveAdult(adult.Id))">
+                            <i class="oi oi-trash" style="color:gray"></i>
+                        </button>
+                    </td>
+                </AuthorizeView>
+                <AuthorizeView Policy="MustBeAdmin">
+                    <td>
+                        <button @onclick="@(() => Edit(adult.Id))">
+                            <i class="oi oi-pencil" style="color: #1b6ec2"></i>
+                        </button>
+                    </td>
+                </AuthorizeView>
             </tr>
         }
         </tbody>
