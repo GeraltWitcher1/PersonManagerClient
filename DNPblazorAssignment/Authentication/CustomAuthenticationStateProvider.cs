@@ -43,7 +43,7 @@ namespace DNPblazorAssignment.Authentication
             return await Task.FromResult(new AuthenticationState(cachedClaimsPrincipal));
         }
 
-        public async void ValidateLogin(string username, string password)
+        public async Task ValidateLogin(string username, string password)
         {
             if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
             if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
@@ -59,17 +59,17 @@ namespace DNPblazorAssignment.Authentication
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Check login details");
             }
 
             NotifyAuthenticationStateChanged(
                 Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity))));
         }
 
-        public void Logout()
+        public async Task Logout()
         {
             cachedUser = null;
-            jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
+            await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(
                 Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())))
             );
