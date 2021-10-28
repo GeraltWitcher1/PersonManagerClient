@@ -1,7 +1,7 @@
 ﻿@page "/Edit/{Id:int}"
 @using Models
 @using DNPblazorAssignment.Data
-@inject IAdultManager AdultService
+@inject IAdultService AdultService
 @inject NavigationManager NavMgr;
 <h3>Edit adult with id: @Id</h3>
 
@@ -88,7 +88,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        adultToEdit = AdultService.GetAdult(Id);
+        adultToEdit = await AdultService.GetAdult(Id);
     }
 
     private void Save()

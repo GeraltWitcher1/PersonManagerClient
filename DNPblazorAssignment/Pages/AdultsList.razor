@@ -1,7 +1,7 @@
 ﻿@page "/adults"
 @using Models
 @using DNPblazorAssignment.Data
-@inject IAdultManager AdultService
+@inject IAdultService AdultService
 @inject IJSRuntime JsRuntime
 @inject NavigationManager NavMgr
 <h3>AdultsList</h3>
@@ -100,7 +100,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = AdultService.GetAll();
+        allAdults = await AdultService.GetAll();
         adultsToShow = allAdults;
     }
     
