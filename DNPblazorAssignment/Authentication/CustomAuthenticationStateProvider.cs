@@ -31,7 +31,7 @@ namespace DNPblazorAssignment.Authentication
                 if (!string.IsNullOrEmpty(userJson))
                 {
                     User tmp = JsonSerializer.Deserialize<User>(userJson);
-                    ValidateLogin(tmp?.Username, tmp?.Password);
+                    await ValidateLogin(tmp?.Username, tmp?.Password);
                 }
             }
             else
@@ -57,7 +57,7 @@ namespace DNPblazorAssignment.Authentication
                 await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
                 cachedUser = user;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("Check login details");
             }

@@ -88,10 +88,17 @@
     };
     private Job Job = new();
 
-    private void AddNewAdult()
+    private async Task AddNewAdult()
     {
         newAdult.JobTitle = Job;
-        adultService.AddAdult(newAdult);
-        navigationManager.NavigateTo("/adults");
+        try
+        {
+            await adultService.AddAdult(newAdult);
+            navigationManager.NavigateTo("/adults");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 }

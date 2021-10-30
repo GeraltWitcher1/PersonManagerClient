@@ -155,7 +155,7 @@ else
         bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Delete this adult?");
         if (confirmed)
         {
-            AdultService.RemoveAdult(adultId);
+            await AdultService.RemoveAdult(adultId);
             var adultToRemove = allAdults.First(a => a.Id == adultId);
             allAdults.Remove(adultToRemove);
             adultsToShow.Remove(adultToRemove);
